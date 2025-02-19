@@ -3,10 +3,11 @@ name: Kicker Job to keep the Repository active
 on:
   # workflow_dispatch is mandatory, so that Artifactory can trigger
   # the workflow through GitHub REST API.
+  workflow_dispatch:
+
   schedule:
     - cron: '0 6 1 * *'
-  workflow_dispatch:
-  
+
 jobs:
   kick-repo-to-be-alive:
     runs-on: ubuntu-latest
