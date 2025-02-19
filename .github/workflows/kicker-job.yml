@@ -8,22 +8,23 @@ on:
   workflow_dispatch:
   
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-  - name: Checkout Repo
-    uses: actions/checkout@v4
-  
-  - name: Append new month
-    run: |
-      date +"Update %Y, Month %m" >> kickerlist.txt
+  kick-repo-to-be-alive:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
     
-  - name: Commit and push changes
-    run: |
-      git config user.name 'github-actions[bot]'
-      git config user.email 'github-actions[bot]@users.noreply.github.com'
+    - name: Append new month
+      run: |
+        date +"Update %Y, Month %m" >> kickerlist.txt
+      
+    - name: Commit and push changes
+      run: |
+        git config user.name 'github-actions[bot]'
+        git config user.email 'github-actions[bot]@users.noreply.github.com'
 
-      git add -A
-      git commit -m "Push new month"
-      git push
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        git add -A
+        git commit -m "Push new month"
+        git push
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
